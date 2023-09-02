@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import transfer.ServerResponse;
 import transfer.UserRequest;
 
@@ -37,7 +34,7 @@ public class ServerCommunication {
 	            out = new ObjectOutputStream(ServerCommunication.socket.getOutputStream());
 	            in = new ObjectInputStream(ServerCommunication.socket.getInputStream());
 	        } catch (IOException ex) {
-	            Logger.getLogger(ServerCommunication.class.getName()).log(Level.SEVERE, null, ex);
+	            ex.printStackTrace();
 	        }
 	    }
 	    
