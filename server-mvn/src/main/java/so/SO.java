@@ -11,6 +11,7 @@ public abstract class SO {
     synchronized public void performSO() throws Exception{
         getConnection();
         try{
+        	System.out.println("1");
             performOperation();
             commitTransaction();
         }

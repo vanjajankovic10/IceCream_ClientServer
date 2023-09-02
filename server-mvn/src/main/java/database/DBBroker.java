@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import domain.DomainObject;
 
@@ -19,11 +17,9 @@ public class DBBroker {
     
     public DBBroker(){
         try {
-            Properties properties = new Properties();
-            properties.load(new FileInputStream("resources/db.properties"));
-            String url = properties.getProperty("url");
-            String username = properties.getProperty("username");
-            String password = properties.getProperty("password");
+            String url = "jdbc:mysql://localhost:3306/icecream";
+            String username = "root";
+            String password = "";
             conn = DriverManager.getConnection(url, username, password);
             conn.setAutoCommit(false);
         }catch(Exception e){
@@ -45,7 +41,7 @@ public class DBBroker {
             conn.close();
            
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
             throw new Exception("Failed at stopping connection");
         }
     }
@@ -54,7 +50,7 @@ public class DBBroker {
         try {
             conn.commit();
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             System.out.println("Failed at commiting transaction");
         }
    
@@ -64,7 +60,7 @@ public class DBBroker {
         try {
             conn.rollback();
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             System.out.println("Failed rollback transaction");
         }
     }
@@ -84,7 +80,7 @@ public class DBBroker {
             s.close();
             return objects;
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             throw new Exception("Failed at loading info about " + dom.getClass().getName());
         }
         
@@ -106,7 +102,7 @@ public class DBBroker {
             s.close();
             return dom;            
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             throw new Exception("Failed at saving object "+dom.getClass().getName());
         }
     }
@@ -124,7 +120,7 @@ public class DBBroker {
             s.close();
             return dom;
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             throw new Exception("Failed at editing " + dom.getClass().getName());
         }
        
@@ -145,7 +141,7 @@ public class DBBroker {
             s.close();
             return dom;
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             throw new Exception("Failed at deleting " + dom.getClass().getName() + ".");
         }
     }
@@ -160,7 +156,7 @@ public class DBBroker {
             s.close();
             return objects;
         } catch (SQLException ex) {
-            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             throw new Exception("Failed at loading info about " + dom.getClass().getName() + ".");
         }
     }
