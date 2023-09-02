@@ -1,9 +1,10 @@
 package domain;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.List;
 
-public interface DomainObject {
+public interface DomainObject extends Serializable{
 	public String getTable();
     public String getParams();
     public String getPK();
