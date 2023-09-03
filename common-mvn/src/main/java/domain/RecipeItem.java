@@ -31,6 +31,9 @@ public class RecipeItem implements DomainObject{
     }
 
     public void setItemID(int itemID) {
+    	if(itemID < 1) {
+    		throw new IllegalArgumentException("ItemID ne sme biti manji od 1");
+    	}
         this.itemID = itemID;
     }
 
@@ -39,6 +42,9 @@ public class RecipeItem implements DomainObject{
     }
 
     public void setRecipe(Recipe recipe) {
+    	if(recipe == null) {
+    		throw new NullPointerException("Recipe ne sme biti null");
+    	}
         this.recipe = recipe;
     }
 
@@ -47,6 +53,9 @@ public class RecipeItem implements DomainObject{
     }
 
     public void setComponent(Component component) {
+    	if(component == null) {
+    		throw new NullPointerException("Component ne sme biti null");
+    	}
         this.component = component;
     }
 
@@ -55,6 +64,9 @@ public class RecipeItem implements DomainObject{
     }
 
     public void setQuantity(double quantity) {
+    	if(quantity < 0 ) {
+    		throw new IllegalArgumentException("Quantity ne sme biti manji od 0");
+    	}
         this.quantity = quantity;
     }
 
@@ -120,7 +132,7 @@ public class RecipeItem implements DomainObject{
                         rs.getString("shortCode"),
                         rs.getString("producer"),cat);
                 Recipe r = new Recipe(rs.getInt("recipeID"));
-                RecipeItem ri = new RecipeItem(rs.getInt("itemID"), r,comp, quantity);
+                RecipeItem ri = new RecipeItem(rs.getInt("itemID"), r,comp, rs.getDouble("quantity"));
                 items.add(ri);
             }
         }catch(SQLException ex){

@@ -46,28 +46,7 @@ public class Recipe implements DomainObject{
             return false;
         }
         final Recipe other = (Recipe) obj;
-        if (this.recipeID != other.recipeID) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.quantity) != Double.doubleToLongBits(other.quantity)) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.shortCode, other.shortCode)) {
-            return false;
-        }
-        if (!Objects.equals(this.comment, other.comment)) {
-            return false;
-        }
-        if (!Objects.equals(this.tehnolog, other.tehnolog)) {
-            return false;
-        }
-        if (!Objects.equals(this.components, other.components)) {
-            return false;
-        }
-        return Objects.equals(this.packaging, other.packaging);
+        return this.recipeID == other.recipeID;       
     }
 
     public int getRecipeID() {
@@ -75,6 +54,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setRecipeID(int recipeID) {
+    	if(recipeID < 1) {
+    		throw new IllegalArgumentException("RecipeID ne sme biti manji od 1");
+    	}
         this.recipeID = recipeID;
     }
 
@@ -83,6 +65,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setTehnolog(Tehnolog tehnolog) {
+    	if(tehnolog == null) {
+    		throw new NullPointerException("Tehnolog ne sme biti null");
+    	}
         this.tehnolog = tehnolog;
     }
 
@@ -91,6 +76,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setName(String name) {
+    	if(name == null) {
+    		throw new NullPointerException("Ime ne sme biti null");
+    	}
         this.name = name;
     }
 
@@ -99,6 +87,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setShortCode(String shortCode) {
+    	if(shortCode == null) {
+    		throw new NullPointerException("ShortCode ne sme biti null");
+    	}
         this.shortCode = shortCode;
     }
 
@@ -107,6 +98,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setQuantity(double quantity) {
+    	if(quantity < 0) {
+    		throw new IllegalArgumentException("Quantity ne sme biti manji od 0");
+    	}
         this.quantity = quantity;
     }
 
@@ -115,6 +109,7 @@ public class Recipe implements DomainObject{
     }
 
     public void setComment(String comment) {
+    	
         this.comment = comment;
     }
 
@@ -123,6 +118,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setPackaging(Packaging packaging) {
+    	if(packaging == null) {
+    		throw new NullPointerException("Packaging ne sme biti null");
+    	}
         this.packaging = packaging;
     }
     
@@ -131,6 +129,9 @@ public class Recipe implements DomainObject{
     }
 
     public void setComponents(List<DomainObject> components) {
+    	if(components == null) {
+    		throw new NullPointerException("Components ne sme biti null");
+    	}
         this.components = components;
     }
 
