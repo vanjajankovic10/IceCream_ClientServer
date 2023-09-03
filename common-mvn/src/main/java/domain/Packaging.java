@@ -25,6 +25,9 @@ public class Packaging implements DomainObject{
     }
 
     public void setPackagingID(int packagingID) {
+    	if(packagingID < 1) {
+    		throw new IllegalArgumentException("PackagingID ne sme biti manji od 1");
+    	}
         this.packagingID = packagingID;
     }
 
@@ -33,6 +36,9 @@ public class Packaging implements DomainObject{
     }
 
     public void setName(String name) {
+    	if(name == null) {
+    		throw new NullPointerException("Ime ne sme biti null");
+    	}
         this.name = name;
     }
 
