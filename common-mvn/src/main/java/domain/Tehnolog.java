@@ -35,6 +35,9 @@ public class Tehnolog implements DomainObject{
     }
 
     public void setTehnologID(int tehnologID) {
+    	if(tehnologID < 1) {
+    		throw new IllegalArgumentException("ID tehnologa ne sme biti manji od 1");
+    	}
         this.tehnologID = tehnologID;
     }
 
@@ -43,6 +46,9 @@ public class Tehnolog implements DomainObject{
     }
 
     public void setName(String name) {
+    	if(name == null) {
+    		throw new NullPointerException("Ime ne sme biti null");
+    	}
         this.name = name;
     }
 
@@ -51,6 +57,9 @@ public class Tehnolog implements DomainObject{
     }
 
     public void setSurname(String surname) {
+    	if(surname == null) {
+    		throw new NullPointerException("Prezime ne sme biti null");
+    	}
         this.surname = surname;
     }
 
@@ -59,6 +68,9 @@ public class Tehnolog implements DomainObject{
     }
 
     public void setUsername(String username) {
+    	if(username == null) {
+    		throw new NullPointerException("Username ne sme biti null");
+    	}
         this.username = username;
     }
 
@@ -67,6 +79,9 @@ public class Tehnolog implements DomainObject{
     }
 
     public void setPassword(String password) {
+    	if(password == null) {
+    		throw new NullPointerException("Password ne sme biti null");
+    	}
         this.password = password;
     }
 
