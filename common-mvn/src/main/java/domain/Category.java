@@ -25,6 +25,9 @@ public class Category implements DomainObject{
     }
 
     public void setCategoryID(int categoryID) {
+    	if(categoryID < 1) {
+    		throw new IllegalArgumentException("CategoryID ne sme biti manji od 1");
+    	}
         this.categoryID = categoryID;
     }
 
@@ -33,6 +36,9 @@ public class Category implements DomainObject{
     }
 
     public void setName(String name) {
+    	if(name == null) {
+    		throw new NullPointerException("Naziv ne sme biti null");
+    	}
         this.name = name;
     }
 
