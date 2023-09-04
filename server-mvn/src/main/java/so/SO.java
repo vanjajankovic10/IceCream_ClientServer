@@ -8,10 +8,13 @@ public abstract class SO {
         this.dbb = new DBBroker();
     }
     
+    public SO(DBBroker dbb){
+        this.dbb = dbb;
+    }
+    
     synchronized public void performSO() throws Exception{
         getConnection();
         try{
-        	System.out.println("1");
             performOperation();
             commitTransaction();
         }
