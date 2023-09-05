@@ -3,6 +3,7 @@ package so;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.DBBroker;
 import domain.DomainObject;
 import domain.Recipe;
 
@@ -12,6 +13,14 @@ public class SOFindRecipes extends SO{
     public SOFindRecipes(String filter){
         this.filter = filter; 
     }
+    public SOFindRecipes() {
+    	super();
+	}
+
+    public SOFindRecipes(DBBroker dbb, String filter) {
+    	super(dbb);
+    	this.filter = filter;
+	}
     @Override
     protected void performOperation() throws Exception {
         List<DomainObject> allRecipes = dbb.getAll(new Recipe());
@@ -26,4 +35,5 @@ public class SOFindRecipes extends SO{
     public List<DomainObject> getList(){
         return list;
     }
+ 
 }
