@@ -1,5 +1,7 @@
 package so;
 
+import database.DBBroker;
+import domain.Component;
 import domain.DomainObject;
 
 public class SOEditComponent extends SO{
@@ -8,7 +10,13 @@ public class SOEditComponent extends SO{
     public SOEditComponent(DomainObject param){
         this.param = param;
     }
-    
+    public SOEditComponent() {
+    	super();
+	}
+
+    public SOEditComponent(DBBroker dbb) {
+    	super(dbb);
+	}
 
     @Override
     protected void performOperation() throws Exception {
@@ -25,5 +33,11 @@ public class SOEditComponent extends SO{
     
     public DomainObject getComponent(){
         return component;
+    }
+    
+    public void preduslov() {
+    	if(!(param instanceof Component) && param!=null) {
+    		throw new IllegalArgumentException("Poslati objekat nije odogvarajuce klase");
+    	}
     }
 }

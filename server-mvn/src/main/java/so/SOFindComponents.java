@@ -3,6 +3,7 @@ package so;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.DBBroker;
 import domain.Component;
 import domain.DomainObject;
 
@@ -12,7 +13,14 @@ public class SOFindComponents extends SO{
     public SOFindComponents(String filter){
         this.filter = filter; 
     }
-    
+    public SOFindComponents() {
+    	super();
+	}
+
+    public SOFindComponents(DBBroker dbb, String filter) {
+    	super(dbb);
+    	this.filter = filter;
+	}
 
     @Override
     protected void performOperation() throws Exception {
