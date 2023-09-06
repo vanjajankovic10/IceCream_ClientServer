@@ -7,22 +7,77 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * Klasa koja predstavlja recept sladoleda.
+ * 
+ * Klasa implementira interfejs DomainObject.
+ * 
+ * Recept ima svoj id, naziv i skraceni naziv, komentar, tehnologa koji ga je kreirao,
+ * kolicinu, listu sastojaka i pakovanje.
+ * 
+ * @author Vanja Jankovic
+ */
 public class Recipe implements DomainObject{
+	/**
+	 * ID recepta kao int.
+	 */
 	private int recipeID;
+	/**
+	 * Tehnolog kao objekat klase Tehnolog.
+	 */
     private Tehnolog tehnolog;
+    /**
+     * Naziv recepta kao String.
+     */
     private String name;
+    /**
+     * Skraceni naziv recepta kao String.
+     */
     private String shortCode;
+    /**
+     * Kolicina recepta kao double.
+     */
     private double quantity;
+    /**
+     * Komentar kao String.
+     */
     private String comment;
+    /**
+     * Lista sastojaka koje cine RecipeItem kao List objekata koji
+     *  implementiraju interfejs DomainObject.
+     */
     private List<DomainObject> components;
+    /**
+     * Pakovanje sladoleda kao objekat klase Packaging.
+     */
     private Packaging packaging;
-
+    /**
+     * Besparametarski konstruktor koji inicijalizuje objekat klase Recipe.
+     */
     public Recipe() {
     }
+    /**
+     * Konstruktor sa parametrom koji inicijalizuje objekat klase Recipe i postavlja
+     * vrednost id-a na prosledjenu vrednost.
+     * 
+     * @param id ID recepta kao int.
+     */
     public Recipe(int id){
         this.recipeID = id;
     }
+    /**
+     * Konstruktor sa parametrima koji inicijalizuje objekat klase Recipe
+     * i postavlja vrednosti id-a, naziva, skracenog naziva, kolicine, komentara,
+     * tehnologa i pakovanja na prosledjene vrednosti.
+     * 
+     * @param id ID recepta kao int.
+     * @param name Naziv recepta kao String.
+     * @param shortCode Skraceni naziv recepta kao String.
+     * @param quantity Kolicina recepta kao double.
+     * @param comment Komentar recepta kao String.
+     * @param tehnolog Tehnolog recepta kao objekat klase Tehnolog.
+     * @param packaging Pakovanje sladoleda kao objekat klase Packaging.
+     */
     public Recipe(int id, String name, String shortCode, double quantity, String comment, Tehnolog tehnolog, Packaging packaging) {
         this.recipeID = id;
         this.tehnolog = tehnolog;
@@ -33,7 +88,17 @@ public class Recipe implements DomainObject{
         this.components = new ArrayList<>();
         this.packaging = packaging;
     }
-    
+    /**
+     * Poredi dva objekta recepta sladoleda po njihovom id-u.
+     * 
+     * @param obj Objekat sa kojim se poredi.
+     * 
+     * @return 
+     *  <ul>
+     * 	 <li>true - ako su oba objekta klase Recipe i imaju isti id.</li>
+     *	 <li>false - u svim ostalim slucajevima. </li>
+     * </ul>
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -48,93 +113,166 @@ public class Recipe implements DomainObject{
         final Recipe other = (Recipe) obj;
         return this.recipeID == other.recipeID;       
     }
-
+    /**
+     * Vraca ID recepta kao int.
+     * 
+     * @return ID recepta kao int.
+     */
     public int getRecipeID() {
         return recipeID;
     }
-
+    /**
+     * Postavlja ID recepta na prosledjenu vrednost.
+     * 
+     * @param recipeID ID recepta kao int.
+     */
     public void setRecipeID(int recipeID) {
     	if(recipeID < 1) {
     		throw new IllegalArgumentException("RecipeID ne sme biti manji od 1");
     	}
         this.recipeID = recipeID;
     }
-
+    /**
+     * Vraca Tehnologa recepta kao objekat klase Tehnolog.
+     * 
+     * @return Tehnolog recepta kao objekat klase Tehnolog.
+     */
     public Tehnolog getTehnolog() {
         return tehnolog;
     }
-
+    /**
+     * Postavlja Tehnologa recepta na prosledjenu vrednost.
+     * 
+     * @param tehnolog Tehnolog recepta kao objekat klase Tehnolog.
+     */
     public void setTehnolog(Tehnolog tehnolog) {
     	if(tehnolog == null) {
     		throw new NullPointerException("Tehnolog ne sme biti null");
     	}
         this.tehnolog = tehnolog;
     }
-
+    /**
+     * Vraca naziv recepta kao String.
+     * 
+     * @return Naziv recepta kao String.
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Postavlja naziv recepta na prosledjenu vrednost.
+     * 
+     * @param name Naziv recepta kao String.
+     */
     public void setName(String name) {
     	if(name == null) {
     		throw new NullPointerException("Ime ne sme biti null");
     	}
         this.name = name;
     }
-
+    /**
+     * Vraca skraceni naziv recepta kao String.
+     * 
+     * @return Skraceni naziv recepta kao String.
+     */
     public String getShortCode() {
         return shortCode;
     }
-
+    /**
+     * Postavlja skraceni naziv recepta na prosledjenu vrednost.
+     * 
+     * @param shortCode Skraceni naziv recepta kao String.
+     */
     public void setShortCode(String shortCode) {
     	if(shortCode == null) {
     		throw new NullPointerException("ShortCode ne sme biti null");
     	}
         this.shortCode = shortCode;
     }
-
+    /**
+     * Vraca kolicinu recepta kao double.
+     * 
+     * @return Kolicina recepta kao double.
+     */
     public double getQuantity() {
         return quantity;
     }
-
+    /**
+     * Postavlja kolicinu recepta na prosledjenu vrednost.
+     * 
+     * @param quantity Kolicina recepta kao double.
+     */
     public void setQuantity(double quantity) {
     	if(quantity < 0) {
     		throw new IllegalArgumentException("Quantity ne sme biti manji od 0");
     	}
         this.quantity = quantity;
     }
-
+    /**
+     * Vraca komentar recepta kao String.
+     * 
+     * @return Komentar recepta kao String.
+     */
     public String getComment() {
         return comment;
     }
-
+    /**
+    * Postavlja komentar recepta na prosledjenu vrednost.
+    * 
+    * @param comment Komentar recepta kao String.
+    */
     public void setComment(String comment) {
     	
         this.comment = comment;
     }
-
+    /**
+     * Vraca pakovanje sladoleda kao objekat klase Packaging.
+     * 
+     * @return Pakovanje sladoleda kao objekat klase Packaging.
+     */
     public Packaging getPackaging() {
         return packaging;
     }
-
+    /**
+     * Postavlja pakovanje recepta na prosledjenu vrednost.
+     * 
+     * @param packaging Pakovanje recepta kao objekat klase Packaging.
+     */
     public void setPackaging(Packaging packaging) {
     	if(packaging == null) {
     		throw new NullPointerException("Packaging ne sme biti null");
     	}
         this.packaging = packaging;
     }
-    
+    /**
+     * Vraca listu stavki recepta sladoleda kao List objekata koji
+     *  implementiraju interfejs DomainObject.
+     * 
+     * @return Lista stavki recepta sladoleda kao List objekata koji
+     *  implementiraju interfejs DomainObject.
+     */
     public List<DomainObject> getComponents() {
         return components;
     }
-
+    /**
+     * Postavlja listu stavki recepta sladoleda na prosledjenu vrednost.
+     * 
+     * @param components Lista stavki recepta sladoleda kao List objekata koji
+     *  implementiraju interfejs DomainObject.
+     */
     public void setComponents(List<DomainObject> components) {
     	if(components == null) {
     		throw new NullPointerException("Components ne sme biti null");
     	}
         this.components = components;
     }
-
+    /**
+     * Vraca String sa informacijama o receptu sladoleda, odnosno informacijama
+     * o id-u, nazivu recepta, skracenom nazivu, komentaru, tehnologu, pakovanju
+     *  i listi stavki recepta.
+     * 
+     * @return Informacije o receptu kao String.
+     */
     @Override
     public String toString() {
         return "Recipe{" + "id=" + recipeID + ", tehnolog=" + tehnolog + ", name=" + name + ", shortCode=" + shortCode + ", quantity=" + quantity + ", comment=" + comment + ", components=" + components + ", packaging=" + packaging + '}';

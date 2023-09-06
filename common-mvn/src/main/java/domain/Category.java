@@ -7,46 +7,99 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * Klasa koja predstavlja kategoriju sastojka sladoleda.
+ * 
+ * Klasa implementira interfejs DomainObject.
+ * 
+ * Kategorija ima svoj id i naziv kategorije.
+ * 
+ * @author Vanja Jankovic
+ *
+ */
 public class Category implements DomainObject{
+	/**
+	 * ID kategorije kao int.
+	 */
 	private int categoryID;
+	/**
+	 * Naziv kategorije kao String.
+	 */
     private String name;
-
+    /**
+     * Besparametarski konstruktor koji inicijalizuje objekat klase Category.
+     */
     public Category() {
     }
-
+    /**
+     * Konstruktor sa parametrima koji inicijalizuje objekat klase Category
+     * i postavlja vrednosti id-a i naziva kategorije sladoleda.
+     * 
+     * @param id ID kategorije kao int.
+     * @param category Naziv kategorije kao String.
+     */
     public Category(int id, String category) {
         this.categoryID = id;
         this.name = category;
     }
-
+    /**
+     * Vraca ID kategorije kao int.
+     * 
+     * @return ID kategorije kao int.
+     */
     public int getCategoryID() {
         return categoryID;
     }
-
+    /**
+     * Postavlja ID kategorije na prosledjenu vrednost.
+     * 
+     * @param categoryID ID kategorije kao int.
+     */
     public void setCategoryID(int categoryID) {
     	if(categoryID < 1) {
     		throw new IllegalArgumentException("CategoryID ne sme biti manji od 1");
     	}
         this.categoryID = categoryID;
     }
-
+    /**
+     * Vraca naziv kategorije kao String.
+     * 
+     * @return Naziv kategorije kao String.
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Postavlja naziv kategorije na prosledjenu vrednost.
+     * 
+     * @param name Naziv kategorije kao String.
+     */
     public void setName(String name) {
     	if(name == null) {
     		throw new NullPointerException("Naziv ne sme biti null");
     	}
         this.name = name;
     }
-
+    /**
+     * Vraca String koji predstavlja naziv kategorije sladoleda.
+     * 
+     * @return Naziv kategorije sladoleda kao String.
+     */
     @Override
     public String toString() {
         return  name;
     }
-
+    /**
+     * Poredi dva objekta kategorije po njihovom imenu.
+     * 
+     * @param obj Objekat sa kojim se poredi.
+     * 
+     * @return 
+     *  <ul>
+     * 	 <li>true - ako su oba objekta klase Category i imaju isto ime. </li>
+     *	 <li>false - u svim ostalim slucajevima. </li>
+     * </ul>
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

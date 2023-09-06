@@ -7,17 +7,53 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * Klasa koja predstavlja jednu komponentu(sastojak) sladoleda.
+ * 
+ * Klasa implementira interfejs DomainObject.
+ * 
+ * Komponenta ima svoj id, naziv, skraceni naziv, proizvodjaca i kategoriju kojoj pripada.
+ * 
+ * @author Vanja Jankovic
+ *
+ */
 public class Component implements DomainObject{
-	 private int componentID;
+	/**
+	 * ID komponente kao int.
+	 */
+	 	private int componentID;
+	 	/**
+	 	 * Naziv komponente kao String.
+	 	 */
 	    private String name;
+	    /**
+	     * Skraceni naziv komponente kao String.
+	     */
 	    private String shortCode;
+	    /**
+	     * Naziv proizvodjaca kao String.
+	     */
 	    private String producer;
+	    /**
+	     * Kategorija komponente kao objekat klasa Category.
+	     */
 	    private Category category;
-
+	    /**
+	     * Besparametarski konstruktor koji inicijalizuje objekat klase Component.
+	     */
 	    public Component() {
 	    }
-	    
+	    /**
+	     * Konstruktor sa parametrima koji inicijalizuje objekat klase Component
+	     * i postavlja vrednosti id-a, naziva, skracenog naziva, naziva proizvodjaca
+	     * i kategorije na prosledjene vrednosti.
+	     * 
+	     * @param id ID komponente kao int.
+	     * @param name Naziv komponente kao String.
+	     * @param shortCode Skraceni naziv komponente kao String.
+	     * @param producer Naziv proizvodjaca kao String.
+	     * @param category Kategorija komponente kao objekat klase Category.
+	     */
 	    public Component(int id, String name, String shortCode, String producer, Category category) {
 	        this.componentID = id;
 	        this.name = name;
@@ -25,52 +61,108 @@ public class Component implements DomainObject{
 	        this.producer = producer;
 	        this.category = category;
 	    }
-	    
+	    /**
+	     * Vraca ID komponente kao int.
+	     * 
+	     * @return ID komponente kao int.
+	     */
 	    public int getComponentID() {
 	        return componentID;
 	    }
-
+	    /**
+	     * Postavlja ID komponente na prosledjenu vrednost.
+	     * 
+	     * @param componentID ID komponente kao int.
+	     */
 	    public void setComponentID(int componentID) {
 	        this.componentID = componentID;
 	    }
-
+	    /**
+	     * Vraca naziv komponente kao String.
+	     * 
+	     * @return Naziv komponente kao String.
+	     */
 	    public String getName() {
 	        return name;
 	    }
-
+	    /**
+	     * Postavlja naziv komponente na prosledjenu vrednost.
+	     * 
+	     * @param name Naziv komponente kao String.
+	     */
 	    public void setName(String name) {
 	        this.name = name;
 	    }
-
+	    /**
+	     * Vraca skraceni naziv komponente kao String.
+	     * 
+	     * @return Skraceni naziv komponente kao String.
+	     */
 	    public String getShortCode() {
 	        return shortCode;
 	    }
-
+	    /**
+	     * Postavlja skraceni naziv komponente na prosledjenu vrednost.
+	     * 
+	     * @param shortCode Skraceni naziv komponente kao String.
+	     */
 	    public void setShortCode(String shortCode) {
 	        this.shortCode = shortCode;
 	    }
-
+	    /**
+	     * Vraca naziv proizvodjaca kao String.
+	     * 
+	     * @return Naziv proizvodjaca kao String.
+	     */
 	    public String getProducer() {
 	        return producer;
 	    }
-
+	    /**
+	     * Postavlja naziv proizvodjaca na prosledjenu vrednost.
+	     * 
+	     * @param producer Naziv proizvodjaca kao String.
+	     */
 	    public void setProducer(String producer) {
 	        this.producer = producer;
 	    }
-
+	    /**
+	     * Vraca kategoriju komponente kao objekat klase Category.
+	     * 
+	     * @return Kategorija komponente kao objekat klase Category.
+	     */
 	    public Category getCategory() {
 	        return category;
 	    }
-
+	    /**
+	     * Postavlja kategoriju komponente na prosledjenu vrednost.
+	     * 
+	     * @param category Kategorija komponente kao objekat klase Category.
+	     */
 	    public void setCategory(Category category) {
 	        this.category = category;
 	    }
-
+	    /**
+	     * Vraca String sa informacijama o komponenti sladoleda, odnosno informacijama
+	     * o id-u, nazivu komponente, skracenom nazivu, proizvodjacu i kategoriji.
+	     * 
+	     * @return Informacije o komponenti sladoleda kao String.
+	     */
 	    @Override
 	    public String toString() {
 	        return "Component{" + "id=" + componentID + ", name=" + name + ", shortCode=" + shortCode + ", producer=" + producer + ", category=" + category + '}';
 	    }
-
+	    /**
+	     * Poredi dva objekta komponente sladoleda po njihovom id-u, nazivu, 
+	     * skracenom nazivu, proizvodjacu i kategoriji.
+	     * 
+	     * @param obj Objekat sa kojim se poredi.
+	     * 
+	     * @return 
+	     *  <ul>
+	     * 	 <li>true - ako su oba objekta klase Component i imaju isti id, naizv, skraceni naziv, proizvodjaca i kategoriju </li>
+	     *	 <li>false - u svim ostalim slucajevima. </li>
+	     * </ul>
+	     */
 	    @Override
 	    public boolean equals(Object obj) {
 	        if (this == obj) {

@@ -7,74 +7,163 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * Klasa koja predstavlja stavku recepta sladoleda.
+ * 
+ * Klasa implementira interfejs DomainObject.
+ * 
+ * RecipeItem ima svoj id, referencu na recept kome pripada, referencu na komponentu
+ * kojoj pripada i kolicinu, odnosno procentualnu zastupljenost sastojka u 100%.
+ * 
+ * @author Vanja Jankovic
+ * @see domain.Recipe
+ */
 public class RecipeItem implements DomainObject{
+	/**
+	 * ID stavke recepta kao int.
+	 */
 	private int itemID;
+	/**
+	 * Recept kome pripada stavka recepta kao objekat klase Recipe.
+	 */
     private Recipe recipe;
+    /**
+     * Komponenta na koju se odnosi stavka recepta kao objekat klase Component.
+     */
     private Component component;
+    /**
+     * Procentualna zastupljenost stavke recepta u celokupnom receptu kao double.
+     */
     private double quantity;
-
+    /**
+     * Besparametarski konstruktor koji inicijalizuje objekat klase RecipeItem.
+     */
     public RecipeItem() {
     }
+    /**
+     * Konstruktor sa parametrom koji inicijalizuje objekat klase RecipeItem
+     *  i postavlja vrednost recepta na prosledjenu vrednost.
+     * 
+     * @param recipe Recept kome pripada stavka recepta kao objekat klase Recipe.
+     */
     public RecipeItem(Recipe recipe) {
         this.recipe = recipe;
     }
+    /**
+     * Konstruktor sa parametrima koji inicijalizuje objekat klase RecipeItem
+     * i postavlja vrednosti id-a, recepta, komponente i procentualne zastupljenosti
+     * na prosledjene vrednosti.
+     * 
+     * @param itemID ID stavke recepta kao int.
+     * @param recipe Recept kome pripada stavka recepta kao objekat klase Recipe.
+     * @param component Komponenta na koju se odnosi stavka recepta kao objekat klase Component
+     * @param quantity Procentualna zastupljenost stavke recepta u celokupnom receptu kao double.
+     */
     public RecipeItem(int itemID, Recipe recipe, Component component, double quantity) {
         this.itemID = itemID;
         this.recipe = recipe;
         this.component = component;
         this.quantity = quantity;
     }
-
+    /**
+     * Vraca ID stavke recepta kao int.
+     * 
+     * @return ID stavke recepta kao int.
+     */
     public int getItemID() {
         return itemID;
     }
-
+    /**
+     * Postavlja ID stavke recepta na prosledjenu vrednost.
+     * 
+     * @param itemID ID stavke recepta kao int.
+     */
     public void setItemID(int itemID) {
     	if(itemID < 1) {
     		throw new IllegalArgumentException("ItemID ne sme biti manji od 1");
     	}
         this.itemID = itemID;
     }
-
+    /**
+     * Vraca Recept kome pripada stavka recepta kao objekat klase Recipe.
+     * 
+     * @return Recept kome pripada stavka recepta kao objekat klase Recipe.
+     */
     public Recipe getRecipe() {
         return recipe;
     }
-
+    /**
+     * Postavlja recept kome pripada stavka recepta na prosledjenu vrednost.
+     * 
+     * @param recipe Recept kome pripada stavka recepta kao objekat klase Recipe.
+     */
     public void setRecipe(Recipe recipe) {
     	if(recipe == null) {
     		throw new NullPointerException("Recipe ne sme biti null");
     	}
         this.recipe = recipe;
     }
-
+    /**
+     * Vraca komponentu na koju se odnosi stavka recepta kao objekat klase Component.
+     * 
+     * @return Komponenta na koju se odnosi stavka recepta kao objekat klase Component.
+     */
     public Component getComponent() {
         return component;
     }
-
+    /**
+     * Postavlja komponentu na koju se odnosi stavka recepta na prosledjenu vrednost.
+     * 
+     * @param component Komponenta na koju se odnosi stavka recepta kao objekat klase Component.
+     */
     public void setComponent(Component component) {
     	if(component == null) {
     		throw new NullPointerException("Component ne sme biti null");
     	}
         this.component = component;
     }
-
+    /**
+     * Vraca procentualnu zastupljenost stavke recepta u receptu kao double.
+     * 
+     * @return Procentualna zastupljenost stavke recepta u receptu kao double.
+     */
     public double getQuantity() {
         return quantity;
     }
-
+    /**
+     * Postavlja procentualnu zastupljenost stavke recepta na prosledjenu vrednost.
+     * 
+     * @param quantity Procentualna zastupljenost stavke recepta kao double.
+     */
     public void setQuantity(double quantity) {
     	if(quantity < 0 ) {
     		throw new IllegalArgumentException("Quantity ne sme biti manji od 0");
     	}
         this.quantity = quantity;
     }
-
+    /**
+     * Vraca String sa informacijama o stavki recepta sladoleda, odnosno informacijama
+     * o id-u stavke, receptu kome pripada, komponenti na koju se odnosi, 
+     * procentualnoj zastupljenosti stavke u receptu.
+     * 
+     * @return Informacije o stavki recepta sladoleda kao String.
+     */
     @Override
     public String toString() {
         return "RecipeItem{" + "itemID=" + itemID + ", recipe=" + recipe + ", component=" + component + ", quantity=" + quantity + '}';
     }
-
+    /**
+     * Poredi dva objekta stavke recepta sladoleda po njihovom id-u, procentualnoj zastupljenoscu, 
+     * receptu kome pripadaju i komponentama na koje se odnose.
+     * 
+     * @param obj Objekat sa kojim se poredi.
+     * 
+     * @return 
+     *  <ul>
+     * 	 <li>true - ako su oba objekta klase RecipeItem i imaju isti itemID, recipe, component i quantity </li>
+     *	 <li>false - u svim ostalim slucajevima. </li>
+     * </ul>
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
