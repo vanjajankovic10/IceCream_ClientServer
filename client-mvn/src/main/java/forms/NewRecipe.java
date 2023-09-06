@@ -94,8 +94,6 @@ public class NewRecipe extends JFrame {
         fillCB();
         fillComponentsTable();
         if(status.equals("edit")){
-            btnAddComp.setEnabled(false);
-            btnRemove.setEnabled(false);
             fill();
             fillAddedTable();
         }
