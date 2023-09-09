@@ -8,7 +8,9 @@ import javax.swing.border.EmptyBorder;
 
 import communication.ServerCommunication;
 import controller.ClientController;
+import domain.Component;
 import domain.Tehnolog;
+import json.JsonReport;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +21,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -150,6 +155,10 @@ public class Login extends JFrame {
             else{
                 MainForm mf = new MainForm(tehnolog);
                 JOptionPane.showMessageDialog(rootPane, "Successfull login. Welcome!", "Info", JOptionPane.INFORMATION_MESSAGE);
+                Map<Tehnolog, LocalDateTime> addTehn = new HashMap<>();
+                addTehn.put(tehnolog, LocalDateTime.now());
+                JsonReport.setLoginTehn(addTehn);
+                JsonReport.generateReportT();
                 mf.setVisible(true);
                 this.dispose();
             }

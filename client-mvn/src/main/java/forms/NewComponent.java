@@ -10,18 +10,23 @@ import controller.ClientController;
 import domain.Category;
 import domain.Component;
 import domain.DomainObject;
+import json.JsonReport;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 
 public class NewComponent extends JFrame {
@@ -209,7 +214,10 @@ public class NewComponent extends JFrame {
                 c = ClientController.getInstance().editComponent(component);
                 JOptionPane.showMessageDialog(this, "Sucessfully edited component!","Success", JOptionPane.INFORMATION_MESSAGE);
             }
-            
+            Map<Component, LocalDateTime> addComp = new HashMap<>();
+            addComp.put(c, LocalDateTime.now());
+            JsonReport.setNewComp(addComp);
+            JsonReport.generateReportC();
             dispose();
         } catch (Exception ex) {
             ex.printStackTrace();
