@@ -61,8 +61,8 @@ public class Tehnolog implements DomainObject{
      * @param password Lozinka tehnologa kao String.
      */
     public Tehnolog(String username, String password) {
-        this.username = username;
-        this.password = password;
+    	setUsername(username);
+    	setPassword(password);
     }
     /**
      * Konstruktor sa parametrima koji inicijalizuje objekat klase Tehnolog i
@@ -76,11 +76,11 @@ public class Tehnolog implements DomainObject{
      * @param password Lozinka korisnika kao String.
      */
     public Tehnolog(int id, String name, String surname, String username, String password) {
-        this.tehnologID = id;
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
+        setTehnologID(id);
+        setName(name);
+        setSurname(surname);
+        setUsername(username);
+        setPassword(password);
     }
     /**
      * Vraca ID tehnologa kao int.
@@ -93,6 +93,7 @@ public class Tehnolog implements DomainObject{
  * Postavlja ID tehnologa na prosledjenu vrednost.
  * 
  * @param tehnologID ID tehnologa koji se prosledjuje kao int.
+ * @throws IllegalArgumentException Ako je id manji od 1.
  */
     public void setTehnologID(int tehnologID) {
     	if(tehnologID < 1) {
@@ -112,6 +113,7 @@ public class Tehnolog implements DomainObject{
      * Postavlja ime tehnologa na prosledjenu vrednost.
      * 
      * @param name Ime tehnologa kao String.
+     * @throws NullPointerException Ako je ime null.
      */
     public void setName(String name) {
     	if(name == null) {
@@ -131,6 +133,7 @@ public class Tehnolog implements DomainObject{
      * Postavlja prezime tehnologa na prosledjenu vrednost.
      * 
      * @param surname Prezime tehnologa kao String.
+     * @throws NullPointerException Ako je prezime null.
      */
     public void setSurname(String surname) {
     	if(surname == null) {
@@ -150,6 +153,7 @@ public class Tehnolog implements DomainObject{
      * Postavlja korisnicko ime tehnologa na prosledjenu vrednost.
      * 
      * @param username Korisnicko ime tehnologa kao String.
+     * @throws NullPointerException Ako je username null.
      */
     public void setUsername(String username) {
     	if(username == null) {
@@ -169,6 +173,7 @@ public class Tehnolog implements DomainObject{
      * Postavlja lozinku tehnologa kao String.
      * 
      * @param password Lozinka tehnologa kao String.
+     * @throws NullPointerException Ako je password null.
      */
     public void setPassword(String password) {
     	if(password == null) {

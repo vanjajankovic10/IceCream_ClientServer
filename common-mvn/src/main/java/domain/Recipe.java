@@ -63,7 +63,7 @@ public class Recipe implements DomainObject{
      * @param id ID recepta kao int.
      */
     public Recipe(int id){
-        this.recipeID = id;
+        setRecipeID(id);
     }
     /**
      * Konstruktor sa parametrima koji inicijalizuje objekat klase Recipe
@@ -79,14 +79,14 @@ public class Recipe implements DomainObject{
      * @param packaging Pakovanje sladoleda kao objekat klase Packaging.
      */
     public Recipe(int id, String name, String shortCode, double quantity, String comment, Tehnolog tehnolog, Packaging packaging) {
-        this.recipeID = id;
-        this.tehnolog = tehnolog;
-        this.name = name;
-        this.shortCode = shortCode;
-        this.quantity = quantity;
-        this.comment = comment;
-        this.components = new ArrayList<>();
-        this.packaging = packaging;
+        setRecipeID(id);
+        setTehnolog(tehnolog);
+        setName(name);
+        setShortCode(shortCode);
+        setQuantity(quantity);
+        setComment(comment);
+        setComponents(new ArrayList<>());
+        setPackaging(packaging);
     }
     /**
      * Poredi dva objekta recepta sladoleda po njihovom id-u.
@@ -125,6 +125,7 @@ public class Recipe implements DomainObject{
      * Postavlja ID recepta na prosledjenu vrednost.
      * 
      * @param recipeID ID recepta kao int.
+     * @throws IllegalArgumentException Ako je id manji od 1.
      */
     public void setRecipeID(int recipeID) {
     	if(recipeID < 1) {
@@ -144,6 +145,7 @@ public class Recipe implements DomainObject{
      * Postavlja Tehnologa recepta na prosledjenu vrednost.
      * 
      * @param tehnolog Tehnolog recepta kao objekat klase Tehnolog.
+     * @throws NullPointerException Ako je tehnolog null.
      */
     public void setTehnolog(Tehnolog tehnolog) {
     	if(tehnolog == null) {
@@ -163,6 +165,7 @@ public class Recipe implements DomainObject{
      * Postavlja naziv recepta na prosledjenu vrednost.
      * 
      * @param name Naziv recepta kao String.
+     * @throws NullPointerException Ako je ime null.
      */
     public void setName(String name) {
     	if(name == null) {
@@ -182,6 +185,7 @@ public class Recipe implements DomainObject{
      * Postavlja skraceni naziv recepta na prosledjenu vrednost.
      * 
      * @param shortCode Skraceni naziv recepta kao String.
+     * @throws NullPointerException Ako je shortCode null.
      */
     public void setShortCode(String shortCode) {
     	if(shortCode == null) {
@@ -201,6 +205,7 @@ public class Recipe implements DomainObject{
      * Postavlja kolicinu recepta na prosledjenu vrednost.
      * 
      * @param quantity Kolicina recepta kao double.
+     * @throws IllegalArgumentException Ako je quantity manji od 0.
      */
     public void setQuantity(double quantity) {
     	if(quantity < 0) {
@@ -237,6 +242,7 @@ public class Recipe implements DomainObject{
      * Postavlja pakovanje recepta na prosledjenu vrednost.
      * 
      * @param packaging Pakovanje recepta kao objekat klase Packaging.
+     * @throws NullPointerException Ako je packaging null.
      */
     public void setPackaging(Packaging packaging) {
     	if(packaging == null) {
@@ -259,6 +265,7 @@ public class Recipe implements DomainObject{
      * 
      * @param components Lista stavki recepta sladoleda kao List objekata koji
      *  implementiraju interfejs DomainObject.
+     *  @throws NullPointerException Ako je lista components null.
      */
     public void setComponents(List<DomainObject> components) {
     	if(components == null) {

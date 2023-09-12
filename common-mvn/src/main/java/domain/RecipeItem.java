@@ -47,7 +47,7 @@ public class RecipeItem implements DomainObject{
      * @param recipe Recept kome pripada stavka recepta kao objekat klase Recipe.
      */
     public RecipeItem(Recipe recipe) {
-        this.recipe = recipe;
+        setRecipe(recipe);
     }
     /**
      * Konstruktor sa parametrima koji inicijalizuje objekat klase RecipeItem
@@ -60,10 +60,10 @@ public class RecipeItem implements DomainObject{
      * @param quantity Procentualna zastupljenost stavke recepta u celokupnom receptu kao double.
      */
     public RecipeItem(int itemID, Recipe recipe, Component component, double quantity) {
-        this.itemID = itemID;
-        this.recipe = recipe;
-        this.component = component;
-        this.quantity = quantity;
+    	setItemID(itemID);
+    	setRecipe(recipe);
+    	setComponent(component);
+    	setQuantity(quantity);
     }
     /**
      * Vraca ID stavke recepta kao int.
@@ -77,6 +77,7 @@ public class RecipeItem implements DomainObject{
      * Postavlja ID stavke recepta na prosledjenu vrednost.
      * 
      * @param itemID ID stavke recepta kao int.
+     * @throws IllegalArgumentException Ako je id manji od 1.
      */
     public void setItemID(int itemID) {
     	if(itemID < 1) {
@@ -96,6 +97,7 @@ public class RecipeItem implements DomainObject{
      * Postavlja recept kome pripada stavka recepta na prosledjenu vrednost.
      * 
      * @param recipe Recept kome pripada stavka recepta kao objekat klase Recipe.
+     * @throws NullPointerException Ako je recipe null.
      */
     public void setRecipe(Recipe recipe) {
     	if(recipe == null) {
@@ -115,6 +117,7 @@ public class RecipeItem implements DomainObject{
      * Postavlja komponentu na koju se odnosi stavka recepta na prosledjenu vrednost.
      * 
      * @param component Komponenta na koju se odnosi stavka recepta kao objekat klase Component.
+     * @throws NullPointerException Ako je component null.
      */
     public void setComponent(Component component) {
     	if(component == null) {
@@ -134,6 +137,7 @@ public class RecipeItem implements DomainObject{
      * Postavlja procentualnu zastupljenost stavke recepta na prosledjenu vrednost.
      * 
      * @param quantity Procentualna zastupljenost stavke recepta kao double.
+     * @throws IllegalArgumentException Ako je quantity manji od 0.
      */
     public void setQuantity(double quantity) {
     	if(quantity < 0 ) {

@@ -39,8 +39,10 @@ public class Category implements DomainObject{
      * @param category Naziv kategorije kao String.
      */
     public Category(int id, String category) {
-        this.categoryID = id;
-        this.name = category;
+        
+        setCategoryID(id);
+        setName(category);
+        
     }
     /**
      * Vraca ID kategorije kao int.
@@ -54,6 +56,7 @@ public class Category implements DomainObject{
      * Postavlja ID kategorije na prosledjenu vrednost.
      * 
      * @param categoryID ID kategorije kao int.
+     * @throws IllegalArgumentException Ako je id manji od 1.
      */
     public void setCategoryID(int categoryID) {
     	if(categoryID < 1) {
@@ -73,6 +76,7 @@ public class Category implements DomainObject{
      * Postavlja naziv kategorije na prosledjenu vrednost.
      * 
      * @param name Naziv kategorije kao String.
+     * @throws NullPointerException Ako je name null.
      */
     public void setName(String name) {
     	if(name == null) {

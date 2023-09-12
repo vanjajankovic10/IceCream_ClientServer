@@ -39,8 +39,8 @@ public class Packaging implements DomainObject{
      * @param name Naziv pakovanja kao String.
      */
     public Packaging(int id, String name) {
-        this.packagingID = id;
-        this.name = name;
+    	setPackagingID(id);
+    	setName(name);
     }
     /**
      * Vraca ID pakovanja kao int.
@@ -54,6 +54,7 @@ public class Packaging implements DomainObject{
      * Postavlja ID pakovanja na prosledjenu vrednost.
      * 
      * @param packagingID ID pakovanja kao int.
+     * @throws IllegalArgumentException Ako je id manji od 1.
      */
     public void setPackagingID(int packagingID) {
     	if(packagingID < 1) {
@@ -73,6 +74,7 @@ public class Packaging implements DomainObject{
      * Postavlja naziv pakovanja na prosledjenu vrednost.
      * 
      * @param name Naziv pakovanja kao String.
+     * @throws NullPointerException Ako je ime null.
      */
     public void setName(String name) {
     	if(name == null) {

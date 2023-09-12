@@ -55,11 +55,11 @@ public class Component implements DomainObject{
 	     * @param category Kategorija komponente kao objekat klase Category.
 	     */
 	    public Component(int id, String name, String shortCode, String producer, Category category) {
-	        this.componentID = id;
-	        this.name = name;
-	        this.shortCode = shortCode;
-	        this.producer = producer;
-	        this.category = category;
+	    	setComponentID(id);
+	    	setName(name);
+	    	setShortCode(shortCode);
+	    	setProducer(producer);
+	    	setCategory(category);
 	    }
 	    /**
 	     * Vraca ID komponente kao int.
@@ -73,8 +73,12 @@ public class Component implements DomainObject{
 	     * Postavlja ID komponente na prosledjenu vrednost.
 	     * 
 	     * @param componentID ID komponente kao int.
+	     * @throws IllegalArgumentException Ako je id manji od 1.
 	     */
 	    public void setComponentID(int componentID) {
+	    	if(componentID < 1) {
+	    		throw new IllegalArgumentException("ComponentID ne sme biti manji od 1");
+	    	}
 	        this.componentID = componentID;
 	    }
 	    /**
@@ -89,8 +93,12 @@ public class Component implements DomainObject{
 	     * Postavlja naziv komponente na prosledjenu vrednost.
 	     * 
 	     * @param name Naziv komponente kao String.
+	     * @throws NullPointerException Ako je name null.
 	     */
 	    public void setName(String name) {
+	    	if(name == null) {
+	    		throw new NullPointerException("Naziv ne sme biti null");
+	    	}
 	        this.name = name;
 	    }
 	    /**
@@ -105,8 +113,12 @@ public class Component implements DomainObject{
 	     * Postavlja skraceni naziv komponente na prosledjenu vrednost.
 	     * 
 	     * @param shortCode Skraceni naziv komponente kao String.
+	     * @throws NullPointerException Ako je shortCode null.
 	     */
 	    public void setShortCode(String shortCode) {
+	    	if(shortCode == null) {
+	    		throw new NullPointerException("ShortCode ne sme biti null.");
+	    	}
 	        this.shortCode = shortCode;
 	    }
 	    /**
@@ -121,8 +133,12 @@ public class Component implements DomainObject{
 	     * Postavlja naziv proizvodjaca na prosledjenu vrednost.
 	     * 
 	     * @param producer Naziv proizvodjaca kao String.
+	     * @throws NullPointerException Ako je producer null.
 	     */
 	    public void setProducer(String producer) {
+	    	if(producer == null) {
+	    		throw new NullPointerException("Producer ne sme biti null");
+	    	}
 	        this.producer = producer;
 	    }
 	    /**
@@ -137,8 +153,12 @@ public class Component implements DomainObject{
 	     * Postavlja kategoriju komponente na prosledjenu vrednost.
 	     * 
 	     * @param category Kategorija komponente kao objekat klase Category.
+	     * @throws NullPointerException Ako je category null.
 	     */
 	    public void setCategory(Category category) {
+	    	if(category == null) {
+	    		throw new NullPointerException("Category ne sme biti null");
+	    	}
 	        this.category = category;
 	    }
 	    /**
